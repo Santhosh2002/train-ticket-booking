@@ -269,7 +269,6 @@ void user_login()
 void viewdetails(void)
 {
 	system("cls"); 
-<<<<<<< HEAD
 	printf("====================================================================================================\n");
 	printf("|                                                                                                   \n");
 	printf("|                               -----------------------------                                       \n");
@@ -299,38 +298,7 @@ void viewdetails(void)
     printf("|12953	MUMBAI CENT - HAZRAT NIZAMUDDIN   1400 RS          RAJDHANI	M,T,W,T,F,S,S	17:40	10:55   \n");
 	printf("|                                                                                                   \n");
 	printf("====================================================================================================\n");
-=======
-	printf("========================================================================================================\n");
-	printf("|                                                                                                       \n");
-	printf("|                               -----------------------------                                           \n");
-	printf("|                                 TRAIN RESERVATION SYSTEM                                              \n");
-	printf("|                               -----------------------------                                           \n");
-	printf("|                                                                                                       \n");
-	printf("|TRAIN 	TRAIN NAME	                                     TYPE	    RUN DAYS    D.TIME	A.TIME  \n");
-	printf("|                                                                                                       \n");
-	printf("|12267  MUMBAI CENTRAL - AHMEDABAD AC DURONTO EXP	     DURONTO	M,T,W,T,F,S,S   23:25   05:55   \n");
-	printf("|                                                                                                       \n");
-        printf("|12268  AHMEDABAD - MUMBAI CENT AC DURONTO EXP   	     DURONTO    M,T,W,T,F,S,S   23:40   06:00   \n");
-	printf("|                                                                                                       \n");
-        printf("|22201	KOLKATA SEALDAH - PURI DURONTO EXPRESS	             DURONTO	M,W,F           20:00   04:00   \n");
-	printf("|                                                                                                       \n");
-        printf("|22204	SECUNDERABAD - VISAKHAPATNAM AC DURONTO EXPRESS	     DURONTO	M,W,S	        20:15	06:35   \n");
-	printf("|                                                                                                       \n");
-        printf("|22206	MADURAI - CHENNAI CENTRAL AC DURONTO EXPRESS	     DURONTO	TUE,THU     	22:40	07:20   \n");
-	printf("|                                                                                                       \n");
-        printf("|12426	JAMMU TAWI - NEW DELHI RAJDHANI EXPRESS	             RAJDHANI	M,T,W,T,F,S,S	19:40	05:05   \n");
-	printf("|                                                                                                       \n");
-        printf("|12430	NEW DELHI - LUCKNOW AC SF EXPRESS	             RAJDHANI	M,T,F,S	        20:50	06:40   \n");
-	printf("|                                                                                                       \n");
-        printf("|12437	SECUNDERABAD - HAZRAT NIZAMUDDIN RAJDHANI EXP	     RAJDHANI	WED	        12:45	10:25   \n");
-	printf("|                                                                                                       \n");
-        printf("|12951	MUMBAI CENTRAL - NEW DELHI RAJDHANI EXPRESS	     RAJDHANI	M,T,W,T,F,S,S	16:35	08:35   \n");
-	printf("|                                                                                                       \n");
-        printf("|12953	MUMBAI CENT - HAZRAT NIZAMUDDIN KRANTI RAJ EXP	     RAJDHANI	M,T,W,T,F,S,S	17:40	10:55   \n");
-	printf("|                                                                                                       \n");
-	printf("========================================================================================================\n");
->>>>>>> 86d7b493c03e4648cbed764d7397729671e8fa6b
-		
+
 	
 }
 void reservation(void)
