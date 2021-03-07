@@ -17,7 +17,7 @@ int main()
     printf("Enter the quantity you need and if none enter 0\n");
     scanf("%d",&lunch);
     bill = water*20 + snacks*100 + lunch*200;
-    printf("Bill(meals only) = %d, bill ");
+    printf("Bill(meals only) = %d", bill );
     
     return 0;
 }

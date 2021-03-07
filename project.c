@@ -19,7 +19,8 @@ void viewdetails(void);
 void cancel(void);								
 void printticket(char name[],int num_of_seats,int age,char gender[],int train_num,float charges);
 void specifictrain(int);						
-float charge(int,int);							
+float charge(int,int);
+void food (void);							
 void user_reg();
 void user_login();
 int i=0;
@@ -114,11 +115,11 @@ void start_page()
 	printf("\t\t|                                               |\n");
 	printf("\t\t|        3. CANCEL RESERVATION                  |\n");
 	printf("\t\t|                                               |\n");
-	printf("\t\t|        4. GO BACK TO LOGIN PAGE               |\n");
+	printf("\t\t|        4. GO BACK TO LOGIN                    |\n");
 	printf("\t\t|                                               |\n");
-	printf("\t\t|        5. GO BACK TO REGISTRATION PAGE        |\n");
+	printf("\t\t|        5. GO BACK TO REGISTRATION             |\n");
 	printf("\t\t|                                               |\n");
-	printf("\t\t|        6. EXIT                                |\n");
+	printf("\t\t|        6. ORDER YOUR FOOD                     |\n");
 	printf("\t\t|                                               |\n");
 	printf("\t\t=================================================\n\n\n");
 
@@ -148,6 +149,9 @@ void start_page()
 			user_reg();
 			break;
 		case 6:
+			food();
+			break;
+		case 7:
         return ;
 		default:
 			printf("\nINVALID CHOICE..");
@@ -583,7 +587,63 @@ void specifictrain(int train_num)
 	    printf("\t\t| 6.DEPARTURE TIME : 17:40                                     |\n");
 	}
 }
+void food (void)
+{
+    int water, snacks, lunch,breakfast,bill,dinner;
+	system("cls");
+	
+	printf("\t\t=================================================================\n");
+	printf("\t\t|                                                               |\n");
+	printf("\t\t|        -----------------------------                          |\n");
+	printf("\t\t|           TRAIN TICKET RERS. SYSTEM                           |\n");
+	printf("\t\t|        -----------------------------                          |\n");
+	printf("\t\t|                                                               |\n");
+	printf("\t\t|         YOUR SAFETY IS OUR PRIORITY..                         |\n");
+	printf("\t\t|                                                               |\n");
+	printf("\t\t| EVERY THING IS WELL SANITINED AND COOKED IN A CLEAN AREA      |\n");
+	printf("\t\t|                                                               |\n");
+	printf("\t\t| NOTE : EVERY THING WILL BE SERVED AT THEIR RESPECTIVE TIME    |\n");
+	printf("\t\t|                                                               |\n");
+	printf("\t\t|    AVAILABLE MEALS                         COST(PER)          |\n");
+	printf("\t\t|                                                               |\n");
+	printf("\t\t| 1. MINERAL WATER(ANY TIME) :               RS. 20/-           |\n");
+	printf("\t\t|                                                               |\n");
+	printf("\t\t| 2. BREAKEFAST (8:00)       :               RS. 100/-          |\n");
+	printf("\t\t|     CONTAINS :                                                |\n");
+	printf("\t\t|       a. IDLY                                                 |\n");
+	printf("\t\t|       b. SAMBAR                                               |\n");
+	printf("\t\t|       c. CHUTNEY                                              |\n");
+	printf("\t\t| 3. LUNCH  (12:00)          :               RS. 300/-          |\n");
+	printf("\t\t|     CONTAINS :                                                |\n");
+	printf("\t\t|       a. RICE                                                 |\n");
+	printf("\t\t|       b. BIRYANI                                              |\n");
+	printf("\t\t|       c. THREE CURRIES                                        |\n");
+	printf("\t\t|       d. CURD                                                 |\n");
+	printf("\t\t| 4. DINNER (20:00)          :               RS. 300/-          |\n");
+	printf("\t\t|     CONTAINS :                                                |\n");
+	printf("\t\t|       a. RICE                                                 |\n");
+	printf("\t\t|       b. BIRYANI                                              |\n");
+	printf("\t\t|       c. THREE CURRIES                                        |\n");
+	printf("\t\t|       d. CURD                                                 |\n");	
+	printf("\t\t|                                                               |\n");
+	printf("\t\t| 5. SNACKS (ANY TIME)       :               RS. 50/-           |\n");
+	printf("\t\t|     CONTAINS :                                                |\n");
+	printf("\t\t|       a. SAMOSA                                               |\n");
+	printf("\t\t|       b. CHUTNEY                                              |\n");
+	printf("\t\t|                                                               |\n");
+	printf("\t\t=================================================================\n\n\n");
+    printf("\t ENTER THE QUANTITY YOU NEED OR SIMPLE ENTER 0 \n");
 
+    printf("\t\n1. ");scanf("%d",&water);
+    printf("\t\n2. ");scanf("%d",&breakfast);
+	printf("\t\n3. ");scanf("%d",&lunch);
+	printf("\t\n4. ");scanf("%d",&dinner);
+	printf("\t\n5. ");scanf("%d",&snacks);
+
+    bill = water*20 + snacks*100 + breakfast*100 + lunch*300+ dinner*300;
+    printf("Bill(meals only) = %d", bill );
+
+}
 
 void cancel(void)   /* Sorry this function does not work. Coding is not completed. Codes have been removed due to some errors  */
 {
