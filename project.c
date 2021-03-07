@@ -35,7 +35,7 @@ void main()
 {
   int choice;
     system("cls"); 
-    system("color 9");
+    system("color 2");
   		
 	printf("\t\t=================================================\n");
 	printf("\t\t|                                               |\n");
@@ -54,7 +54,7 @@ void main()
 	getch();
 	printf("\n\nLOADING...........\n\n");
 	Sleep(1000);
-
+    start2:
   		system("cls"); 
 	printf("\t\t=================================================\n");
 	printf("\t\t|                                               |\n");
@@ -85,6 +85,12 @@ void main()
 	  break;
 	default:
 	  printf("\nINVALID CHOICE...");
+	  printf("\nPLEASE TRY AGAIN ........\n");
+	  Sleep(2000);
+      printf("\n\nPRESS ANY KEY TO GO TO FIRST PAGE......");
+	  getch();
+     goto start2;
+
   }
 
 
@@ -108,11 +114,11 @@ void start_page()
 	printf("\t\t|                                               |\n");
 	printf("\t\t|        3. CANCEL RESERVATION                  |\n");
 	printf("\t\t|                                               |\n");
-	printf("\t\t|        4. CHECK SEAT AVAILABILITY             |\n");
+	printf("\t\t|        4. GO BACK TO LOGIN PAGE               |\n");
 	printf("\t\t|                                               |\n");
-	printf("\t\t|        5. BOOK YOUR MEALS                     |\n");
+	printf("\t\t|        5. GO BACK TO REGISTRATION PAGE        |\n");
 	printf("\t\t|                                               |\n");
-	printf("\t\t|        6.                                     |\n");
+	printf("\t\t|        6. EXIT                                |\n");
 	printf("\t\t|                                               |\n");
 	printf("\t\t=================================================\n\n\n");
 
@@ -136,7 +142,13 @@ void start_page()
 			cancel();
 			break;
 		case 4:
-			return ;
+			user_login();
+			break;
+		case 5:
+			user_reg();
+			break;
+		case 6:
+        return ;
 		default:
 			printf("\nINVALID CHOICE..");
 	}
@@ -153,10 +165,9 @@ void user_reg()
   char lname[20];
   char username[20];
   char passward[20];
-    FILE * user_log = fopen("user_data.txt" , "w");
+    FILE * user_log = fopen("user_data.txt" , "a");
   struct login l ;
-  	for(i=0;i<100;i++)
-  {
+
 	system("cls"); 
 
 	printf("\t\t=================================================\n");
@@ -179,7 +190,8 @@ void user_reg()
 	printf("\n2:\t");scanf("%s",&l.lname);
 	printf("\n3:\t");scanf("%s",&l.username);
 	printf("\n4:\t");scanf("%s",&l.passward);
-    fwrite(&l,sizeof(l),1,user_log);
+
+    fwrite(&l,sizeof(struct login),1,user_log);
     fclose(user_log);
 	printf("\nLOADING...........\n");
 	Sleep(1000);
@@ -199,8 +211,7 @@ void user_reg()
 	printf("\t\t|   PRESS ANY KEY TO CONTINUE...........        |\n");
 	printf("\t\t|                                               |\n");
 	printf("\t\t=================================================\n\n\n");
-	break;
-  }	
+
     getch();
 	
 	printf("\nLOADING...........\n\n");
@@ -215,8 +226,7 @@ void user_login()
   char username[200],passward[20];
   FILE * user_log = fopen("user_data.txt" ,"r");
   struct login l ;
-   for(i=0;i<100;i++)
-  {
+
     system("cls"); 
 
 	printf("\t\t=================================================\n");
@@ -239,7 +249,7 @@ void user_login()
     scanf("%s",&passward);  
 	printf("\nLOADING...........\n");
 	Sleep(1000);
-  while(fread(&l,sizeof(l),1,user_log))
+  while(fread(&l,sizeof(struct login),1,user_log))
   {
     if (strcmp(username,l.username)==0 && strcmp(passward,l.passward)==0)
     {
@@ -262,42 +272,41 @@ void user_login()
     }
     fclose(user_log);
    }
-   break;
-  }
+
   }
 
 void viewdetails(void)
 {
 	system("cls"); 
-	printf("====================================================================================================\n");
-	printf("|                                                                                                   \n");
-	printf("|                               -----------------------------                                       \n");
-	printf("|                                 TRAIN RESERVATION SYSTEM                                          \n");
-	printf("|                               -----------------------------                                       \n");
-	printf("|                                                                                                   \n");
-	printf("|TRAIN 	TRAIN NAME	                      CHARGES          TYPE     RUN DAYS	    D.TIME	A.TIME  \n");
-	printf("|                                                                                                   \n");
-	printf("|12267  MUMBAI CENTRAL - AHMEDABAD 	      1500 RS          DURONTO	M,T,W,T,F,S,S   23:25   05:55   \n");
-	printf("|                                                                                                   \n");
-    printf("|12268  AHMEDABAD - MUMBAI CENT           1500 RS          DURONTO  M,T,W,T,F,S,S   23:40   06:00   \n");
-	printf("|                                                                                                   \n");
-    printf("|22201	KOLKATA SEALDAH - PURI            450  RS          DURONTO	M,W,F           20:00   04:00   \n");
-	printf("|                                                                                                   \n");
-    printf("|22204	SECUNDERABAD - VISAKHAPATNAM      1700 RS          DURONTO	M,W,S	        20:15	06:35   \n");
-	printf("|                                                                                                   \n");
-    printf("|22206	MADURAI - CHENNAI CENTRAL         1300 RS          DURONTO	TUE,THU     	22:40	07:20   \n");
-	printf("|                                                                                                   \n");
-    printf("|12426	JAMMU TAWI - NEW DELHI            600 RS  	       RAJDHANI	M,T,W,T,F,S,S	19:40	05:05   \n");
-	printf("|                                                                                                   \n");
-    printf("|12430	NEW DELHI - LUCKNOW               1500 RS          RAJDHANI	M,T,F,S	        20:50	06:40   \n");
-	printf("|                                                                                                   \n");
-    printf("|12437	SECUNDERABAD - HAZRAT NIZAMUDDIN  900 RS           RAJDHANI	WED	            12:45	10:25   \n");
-	printf("|                                                                                                   \n");
-    printf("|12951	MUMBAI CENTRAL - NEW DELHI        1200 RS   	   RAJDHANI	M,T,W,T,F,S,S	16:35	08:35   \n");
-	printf("|                                                                                                   \n");
-    printf("|12953	MUMBAI CENT - HAZRAT NIZAMUDDIN   1400 RS          RAJDHANI	M,T,W,T,F,S,S	17:40	10:55   \n");
-	printf("|                                                                                                   \n");
-	printf("====================================================================================================\n");
+	printf("=========================================================================================================\n");
+	printf("|\t\t\t\t\t\t\t\t\t\t\t\t\t|\n");
+	printf("|                               -----------------------------                               \t\t|\n");
+	printf("|                                 TRAIN RESERVATION SYSTEM                                  \t\t|\n");
+	printf("|                               -----------------------------                               \t\t|\n");
+	printf("|                                                                                           \t\t|\n");
+	printf("|TRAIN 	TRAIN NAME\t\t\t\tCHARGES\tTYPE\t\tRUN DAYS\tDTIME\tATIME   |\n");
+	printf("|                                                                                           \t\t|\n");
+	printf("|12267  MUMBAI CENTRAL - AHMEDABAD\t\t1500 RS\tDURONTO\t\tM,T,W,T,F,S,S\t23:25\t05:55   |\n");
+	printf("|                                                                                           \t\t|\n");
+    printf("|12268  AHMEDABAD - MUMBAI CENT\t\t\t1500 RS\tDURONTO\t\tM,T,W,T,F,S,S\t23:40\t06:00   |\n");
+	printf("|                                                                                           \t\t|\n");
+    printf("|22201	KOLKATA SEALDAH - PURI\t\t\t450 RS\tDURONTO\t\tM,W,F\t\t20:00\t04:00   |\n");
+	printf("|                                                                                           \t\t|\n");
+    printf("|22204	SECUNDERABAD - VISAKHAPATNAM\t\t1700 RS\tDURONTO\t\tM,W,S\t\t20:15\t06:35   |\n");
+	printf("|                                                                                           \t\t|\n");
+    printf("|22206	MADURAI - CHENNAI CENTRAL\t\t1300 RS\tDURONTO\t\tTUE,THU\t\t22:40\t07:20   |\n");
+	printf("|                                                                                           \t\t|\n");
+    printf("|12426	JAMMU TAWI - NEW DELHI\t\t\t600 RS\tRAJDHANI\tM,T,W,T,F,S,S\t19:40\t05:05   |\n");
+	printf("|                                                                                           \t\t|\n");
+    printf("|12430	NEW DELHI - LUCKNOW\t\t\t1500 RS\tRAJDHANI\tM,T,F,S\t\t20:50\t06:40   |\n");
+	printf("|                                                                                           \t\t|\n");
+    printf("|12437	SECUNDERABAD - HAZRAT NIZAMUDDIN\t900 RS\tRAJDHANI\tWED\t\t12:45\t10:25   |\n");
+	printf("|                                                                                           \t\t|\n");
+    printf("|12951	MUMBAI CENTRAL - NEW DELHI\t\t1200 RS\tRAJDHANI\tM,T,W,T,F,S,S\t16:35\t08:35   |\n");
+	printf("|                                                                                           \t\t|\n");
+    printf("|12953	MUMBAI CENT - HAZRAT NIZAMUDDIN\t\t1400 RS\tRAJDHANI\tM,T,W,T,F,S,S\t17:40\t10:55   |\n");
+	printf("|                                                                                           \t\t|\n");
+	printf("=========================================================================================================\n");
 
 	
 }
@@ -604,6 +613,7 @@ void cancel(void)   /* Sorry this function does not work. Coding is not complete
 		fflush(stdin);
 		scanf("%i",&trainnum);
 		printf("\n\nCANCELLED");  
+		printf("\nPRESS ANY KEY TO GO BACK TO MAIN MENU..");
 		getch();
 }
 
