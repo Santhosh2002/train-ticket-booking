@@ -10,14 +10,16 @@ typedef struct{
 	char name[50];
 	int train_num;
 	int age;
+    int res_num ;
 	char gender[20];
 	int num_of_seats;
 }pd;
 
 void reservation(void);							
 void viewdetails(void);							
-void cancel(void);								
-void printticket(char name[],int num_of_seats,int age,char gender[],int train_num,float charges);
+void cancel(void);
+void verify(void);								
+void printticket(long int res_num,char name[],int num_of_seats,int age,char gender[],int train_num,float charges);
 void specifictrain(int);						
 float charge(int,int);
 void food (void);							
@@ -97,7 +99,43 @@ void main()
 
   return ;
 }
+void verify()
+{
+    FILE *user_log;
+    struct login l;
+    system("cls");
+    ///Reading from file
+    user_log=fopen("user_data.txt","rb+");
+    if(user_log==NULL)
+    {
+        printf("\"File not found\"");
+        return ;
+    }
+    while(fread(&l, sizeof(struct login), 1, user_log)){
+        system("cls"); 
 
+	printf("\t\t=================================================\n");
+	printf("\t\t|                                               |\n");
+	printf("\t\t|        -----------------------------          |\n");
+	printf("\t\t|           TRAIN TICKET RERS. SYSTEM           |\n");
+	printf("\t\t|        -----------------------------          |\n");
+	printf("\t\t|                                               |\n");
+	printf("\t\t|              YOUR DETAILS ARE                 |\n");
+	printf("\t\t|                                               |\n");
+	printf("\t\t|   1. YOUR NAME     : %s %s                     \n", l.fname,l.lname);
+	printf("\t\t|                                                \n");
+	printf("\t\t|   2. YOUR USER ID  : %s                        \n",l.username);
+	printf("\t\t|                                                \n");
+	printf("\t\t|   3. YOUR PASSWARD : %s                        \n",l.passward);
+	printf("\t\t|                                               |\n");
+	printf("\t\t|                                               |\n");
+	printf("\t\t=================================================\n\n\n");
+    }
+    fclose(user_log);
+    printf("Press any key to continue...");
+    getch();
+    system("cls");
+}
 void start_page()
 {
  	int menu_choice,choice_return;
@@ -141,7 +179,10 @@ void start_page()
 			system("cls"); 
 			break;
 		case 3:
-			user_login();
+            cancel();
+			break;
+		case 4:
+            user_login();
 			break;
 		case 5:
 			user_reg();
@@ -150,12 +191,11 @@ void start_page()
 			food();
 			break;
 		case 7:
-			food();
 			break;
 		case 8:
-        return ;
+            return ;
 		case 9:
-			cancel();
+            verify();
 			break;
 		default:
 			printf("\nINVALID CHOICE..");
@@ -173,7 +213,7 @@ void user_reg()
   char lname[20];
   char username[20];
   char passward[20];
-    FILE * user_log = fopen("user_data.txt" , "a");
+    FILE * user_log = fopen("user_data.txt" , "w");
   struct login l ;
 
 	system("cls"); 
@@ -225,6 +265,8 @@ void user_reg()
 	printf("\nLOADING...........\n\n");
 	Sleep(1000);
     system("CLS");
+    verify(); 
+    system("CLS");
 	user_login();
 }
 
@@ -263,7 +305,7 @@ void user_login()
     {
       printf("\nLOGIN SUCCESSFUL.........\n");
 	  Sleep(1000);
-	  system("cls"); 
+	  system("cls");
 	  start_page();
 
     }
@@ -367,52 +409,52 @@ void reservation(void)
 	if(passdetails.train_num==12267)
 	{
 		charges=charge(passdetails.train_num,passdetails.num_of_seats);
-		printticket(passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
+		printticket(passdetails.res_num,passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
 	}
 	else if(passdetails.train_num==12268)
 	{
 		charges=charge(passdetails.train_num,passdetails.num_of_seats);
-		printticket(passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
+		printticket(passdetails.res_num,passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
 	}
 	else if(passdetails.train_num==22201)
 	{
 		charges=charge(passdetails.train_num,passdetails.num_of_seats);
-		printticket(passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
+		printticket(passdetails.res_num,passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
 	}
 	else if(passdetails.train_num==22204)
 	{
 		charges=charge(passdetails.train_num,passdetails.num_of_seats);
-		printticket(passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
+		printticket(passdetails.res_num,passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
 	}
 	else if(passdetails.train_num==22206)
 	{
 		charges=charge(passdetails.train_num,passdetails.num_of_seats);
-		printticket(passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
+		printticket(passdetails.res_num,passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
 	}
 	else if(passdetails.train_num==12426)
 	{
 		charges=charge(passdetails.train_num,passdetails.num_of_seats);
-		printticket(passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
+		printticket(passdetails.res_num,passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
 	}
 	else if(passdetails.train_num==12430)
 	{
 		charges=charge(passdetails.train_num,passdetails.num_of_seats);
-		printticket(passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
+		printticket(passdetails.res_num,passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
 	}
 	else if(passdetails.train_num==12437)
 	{
 		charges=charge(passdetails.train_num,passdetails.num_of_seats);
-		printticket(passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
+		printticket(passdetails.res_num,passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
 	}
 	else if(passdetails.train_num==12951)
 	{
 		charges=charge(passdetails.train_num,passdetails.num_of_seats);
-		printticket(passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
+		printticket(passdetails.res_num,passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
 	}
 	else if(passdetails.train_num==12953)
 	{
 		charges=charge(passdetails.train_num,passdetails.num_of_seats);
-		printticket(passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
+		printticket(passdetails.res_num,passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);		
 	}
 	else
 	{
@@ -428,7 +470,7 @@ void reservation(void)
 	Sleep(1000);
 	if(confirm == 'y')
 	{
-		fprintf(fp,"%s\t\t%d\t\t%d\t\t%s\t\t%d\t\t%.2f\n",&passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);
+		fprintf(fp,"%ld\t\t%s\t\t%d\t\t%d\t\t%s\t\t%d\t\t%.2f\n",&passdetails.res_num,passdetails.name,passdetails.num_of_seats,passdetails.age,passdetails.gender,passdetails.train_num,charges);
 		Sleep(1000);
 		printf("==================");
 		printf("\n RESERVATION DONE ....\n");
@@ -499,8 +541,8 @@ float charge(int train_num,int num_of_seats)
 
 /*********************************************PRINTTICKET()*************************************************/
 
-void printticket(char name[],int num_of_seats,int age,char gender[],int train_num,float charges)
-{
+void printticket(long int res_num,char name[],int num_of_seats,int age,char gender[],int train_num,float charges)
+{    res_num = train_num *10 + num_of_seats*1000 + age;
 	system("cls");
 		printf("\t\t============================================================\n");
 	printf("\t\t|                                                              |\n");
@@ -508,8 +550,10 @@ void printticket(char name[],int num_of_seats,int age,char gender[],int train_nu
 	printf("\t\t|           TRAIN TICKET RERS. SYSTEM                          |\n");
 	printf("\t\t|        -----------------------------                         |\n");
 	printf("\t\t|                                                              |\n");
-	printf("\t\t| TICKET                                                       |\n");
+    printf("\t\t|                        TICKET                                |\n");
 	printf("\t\t|                                                              |\n");
+	printf("\t\t|   RESERVATION NUMBER %ld                                      \n",res_num);	
+	printf("\t\t|                                                               \n");
 	printf("\t\t| 1.NAME           : %s                                         \n",name);
 	printf("\t\t|                                                               \n");
 	printf("\t\t| 2.NUMBER OF SEATS: %d                                         \n",num_of_seats);
@@ -651,33 +695,28 @@ void food (void)
 
 void cancel(void)   /* Sorry this function does not work. Coding is not completed. Codes have been removed due to some errors  */
 {
-	/*FILE *f,*t;
-	int i=0;
-	int trainnum;
-	t=fopen("seats_reserved.txt","w");
-	if ((f=fopen("seats_reserved.txt","r"))==NULL)
+    pd passdetails;
+    int train_num;
+	int age;
+    long int res_num ;
+    long int reservation_num;
+	int num_of_seats; 
+    res_num = train_num *10+ num_of_seats*1000 + age;
+	FILE *fp;
+    printf("ENTER THE RESERVATION NUMBER");
+    scanf("%ld",reservation_num);
+	fp=fopen("seats_reserved.txt","r");
+    while(fread(&passdetails, sizeof(passdetails), 1, fp))
+    {
+	if (res_num==reservation_num)
 	{
-		printf("NO RECORD ADDED.");
-		main();
-		* * * * *
-		*
-		*
-		*
-		*
-		*
-		*
-		*  /  missing codes  /
+		printf("\n\nCANCELLED");
+    			printf("\n\nPRESS ANY KEY TO GO TO MAIN MENU......");
+			getch();  
 	}
-	else*/
-	system("cls");
-	int trainnum;
-	printf("-----------------------\n");
-		printf("ENTER TRAIN NUMBER: \n");
-			printf("-----------------------\n");
-		fflush(stdin);
-		scanf("%i",&trainnum);
-		printf("\n\nCANCELLED");  
-		printf("\nPRESS ANY KEY TO GO BACK TO MAIN MENU..");
-		getch();
+	else
+    {
+    printf("NO RECORD ADDED.");
+    }
+ }	
 }
-
