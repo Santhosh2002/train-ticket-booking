@@ -213,7 +213,7 @@ void user_reg()
   char lname[20];
   char username[20];
   char passward[20];
-    FILE * user_log = fopen("user_data.txt" , "a");
+    FILE * user_log = fopen("user_data.txt" , "w");
   struct login l ;
 
 	system("cls"); 
